@@ -1,5 +1,5 @@
 # import the necessary packages
-from colordescriptor import ColorDescriptor
+from fourierdescriptor import FourierDescriptor
 import argparse
 import glob
 import cv2
@@ -13,7 +13,7 @@ ap.add_argument("-i", "--index", required = True,
 args = vars(ap.parse_args())
 
 # initialize the color descriptor
-cd = ColorDescriptor((8,12,3))
+fd = FourierDescriptor()
 
 # open the output index file for writting
 output = open(args["index"], "w")
@@ -28,7 +28,7 @@ for imagePath in glob.glob(args["dataset"]+"/*.jpg"):
 
 	if image is not None:
 		# describe the image
-		features = cd.describe(image)
+		features = fd.describe(image)
 
 		# write the features to file
 		features = [str(f) for f in features]
