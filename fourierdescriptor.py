@@ -60,8 +60,6 @@ class FourierDescriptor:
 
 		return dst
 
-
-
 	def describe(self, image):
 		#Convert to graysacale
 		im = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
@@ -98,14 +96,41 @@ class FourierDescriptor:
 		# normalize and display the results as rgb
 		cv2.normalize(log_spectrum, log_spectrum, 0.0, 1.0, cv2.NORM_MINMAX)
 	
+		
 		#print log_spectrum
-		for row in log_spectrum:
-			features.extend(row)
-
-		return features
-
-
+		#for row in log_spectrum:
+		#	features.extend(row)
 
 		#cv2.imshow("", log_spectrum)
 		#cv2.waitKey(0)
+
+		h, w = log_spectrum.shape[:2]
 		
+		#Calcula media com uma mascara de 3x3
+		#i_h = 1
+		#while i_h < h:
+		#	i_w = 1
+		#	while i_w < w:
+		#		s = log_spectrum[i_h-1, i_w-1] + log_spectrum[i_h-1, i_w] + log_spectrum[i_h-1, i_w+1] + log_spectrum[i_h, i_w-1] + log_spectrum[i_h, i_w] + log_spectrum[i_h, i_w+1] + log_spectrum[i_h+1, i_w-1] + log_spectrum[i_h+1, i_w] + log_spectrum[i_h+1, i_w+1]
+		#		p = s/9
+		#		features.append(p)
+		#		i_w += 3
+		#	i_h+=3
+		
+		#Calcula media com uma mascara de 5x5
+		i_h = 2
+		while i_h < h:
+			i_w = 2
+			while i_w < w:
+				s = log_spectrum[i_h-2, i_w-2] + log_spectrum[i_h-2, i_w-1] + log_spectrum[i_h-2, i_w+1] + log_spectrum[i_h-2, i_w] + log_spectrum[i_h-2, i_w+1] + log_spectrum[i_h-2, i_w+2]
+				s += log_spectrum[i_h-1, i_w-2] + log_spectrum[i_h-1, i_w-1] + log_spectrum[i_h-1, i_w+1] + log_spectrum[i_h-1, i_w] + log_spectrum[i_h-1, i_w+1] + log_spectrum[i_h-1, i_w+2]
+				s += log_spectrum[i_h, i_w-2] + log_spectrum[i_h, i_w-1] + log_spectrum[i_h, i_w+1] + log_spectrum[i_h, i_w] + log_spectrum[i_h, i_w+1] + log_spectrum[i_h, i_w+2]
+				s += log_spectrum[i_h+1, i_w-2] + log_spectrum[i_h+1, i_w-1] + log_spectrum[i_h+1, i_w+1] + log_spectrum[i_h+1, i_w] + log_spectrum[i_h+1, i_w+1] + log_spectrum[i_h+1, i_w+2]
+				s += log_spectrum[i_h+2, i_w-2] + log_spectrum[i_h+2, i_w-1] + log_spectrum[i_h+2, i_w+1] + log_spectrum[i_h+2, i_w] + log_spectrum[i_h+2, i_w+1] + log_spectrum[i_h+2, i_w+2]
+				p = s/25
+				features.append(p)
+				i_w += 5
+			i_h+=5
+
+
+		return features
