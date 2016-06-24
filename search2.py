@@ -48,4 +48,3 @@ for (score, resultID) in results:
 	resized = cv2.resize(result, dim, interpolation = cv2.INTER_AREA)
 	cv2.imshow("Result", resized)
 	cv2.waitKey(0)
-#	print result

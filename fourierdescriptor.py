@@ -118,19 +118,36 @@ class FourierDescriptor:
 		#	i_h+=3
 		
 		#Calcula media com uma mascara de 5x5
-		i_h = 2
-		while i_h < h:
-			i_w = 2
-			while i_w < w:
-				s = log_spectrum[i_h-2, i_w-2] + log_spectrum[i_h-2, i_w-1] + log_spectrum[i_h-2, i_w+1] + log_spectrum[i_h-2, i_w] + log_spectrum[i_h-2, i_w+1] + log_spectrum[i_h-2, i_w+2]
-				s += log_spectrum[i_h-1, i_w-2] + log_spectrum[i_h-1, i_w-1] + log_spectrum[i_h-1, i_w+1] + log_spectrum[i_h-1, i_w] + log_spectrum[i_h-1, i_w+1] + log_spectrum[i_h-1, i_w+2]
-				s += log_spectrum[i_h, i_w-2] + log_spectrum[i_h, i_w-1] + log_spectrum[i_h, i_w+1] + log_spectrum[i_h, i_w] + log_spectrum[i_h, i_w+1] + log_spectrum[i_h, i_w+2]
-				s += log_spectrum[i_h+1, i_w-2] + log_spectrum[i_h+1, i_w-1] + log_spectrum[i_h+1, i_w+1] + log_spectrum[i_h+1, i_w] + log_spectrum[i_h+1, i_w+1] + log_spectrum[i_h+1, i_w+2]
-				s += log_spectrum[i_h+2, i_w-2] + log_spectrum[i_h+2, i_w-1] + log_spectrum[i_h+2, i_w+1] + log_spectrum[i_h+2, i_w] + log_spectrum[i_h+2, i_w+1] + log_spectrum[i_h+2, i_w+2]
-				p = s/25
+		#i_h = 2
+		#while i_h < h:
+		#	i_w = 2
+		#	while i_w < w:
+		#		s = log_spectrum[i_h-2, i_w-2] + log_spectrum[i_h-2, i_w-1] + log_spectrum[i_h-2, i_w+1] + log_spectrum[i_h-2, i_w] + log_spectrum[i_h-2, i_w+1] + log_spectrum[i_h-2, i_w+2]
+		#		s += log_spectrum[i_h-1, i_w-2] + log_spectrum[i_h-1, i_w-1] + log_spectrum[i_h-1, i_w+1] + log_spectrum[i_h-1, i_w] + log_spectrum[i_h-1, i_w+1] + log_spectrum[i_h-1, i_w+2]
+		#		s += log_spectrum[i_h, i_w-2] + log_spectrum[i_h, i_w-1] + log_spectrum[i_h, i_w+1] + log_spectrum[i_h, i_w] + log_spectrum[i_h, i_w+1] + log_spectrum[i_h, i_w+2]
+		#		s += log_spectrum[i_h+1, i_w-2] + log_spectrum[i_h+1, i_w-1] + log_spectrum[i_h+1, i_w+1] + log_spectrum[i_h+1, i_w] + log_spectrum[i_h+1, i_w+1] + log_spectrum[i_h+1, i_w+2]
+		#		s += log_spectrum[i_h+2, i_w-2] + log_spectrum[i_h+2, i_w-1] + log_spectrum[i_h+2, i_w+1] + log_spectrum[i_h+2, i_w] + log_spectrum[i_h+2, i_w+1] + log_spectrum[i_h+2, i_w+2]
+		#		p = s/25
+		#		features.append(p)
+		#		i_w += 5
+		#	i_h+=5
+
+		#Calcula media com uma mascara de 7x7
+		i_h = 3
+		while i_h < h-7:
+			i_w = 3
+			while i_w < w-7:
+				s = log_spectrum[i_h-3, i_w-3] + log_spectrum[i_h-3, i_w-2] + log_spectrum[i_h-3, i_w-1] + log_spectrum[i_h-3, i_w] + log_spectrum[i_h-3, i_w+1] + log_spectrum[i_h-3, i_w+2] + log_spectrum[i_h-3, i_w+3]
+				s += log_spectrum[i_h-2, i_w-3] + log_spectrum[i_h-2, i_w-2] + log_spectrum[i_h-2, i_w-1] + log_spectrum[i_h-2, i_w] + log_spectrum[i_h-2, i_w+1] + log_spectrum[i_h-2, i_w+2] + log_spectrum[i_h-2, i_w+3]
+				s += log_spectrum[i_h-1, i_w-3] + log_spectrum[i_h-1, i_w-2] + log_spectrum[i_h-1, i_w-1] + log_spectrum[i_h-1, i_w] + log_spectrum[i_h-1, i_w+1] + log_spectrum[i_h-1, i_w+2] + log_spectrum[i_h-1, i_w+3]
+				s += log_spectrum[i_h, i_w-3] + log_spectrum[i_h, i_w-2] + log_spectrum[i_h, i_w-1] + log_spectrum[i_h, i_w] + log_spectrum[i_h, i_w+1] + log_spectrum[i_h, i_w+2] + log_spectrum[i_h, i_w+3]
+				s += log_spectrum[i_h+1, i_w-3] + log_spectrum[i_h+1, i_w-2] + log_spectrum[i_h+1, i_w-1] + log_spectrum[i_h+1, i_w] + log_spectrum[i_h+1, i_w+1] + log_spectrum[i_h+1, i_w+2] + log_spectrum[i_h+1, i_w+3]
+				s += log_spectrum[i_h+2, i_w-3] + log_spectrum[i_h+2, i_w-2] + log_spectrum[i_h+2, i_w-1] + log_spectrum[i_h+2, i_w] + log_spectrum[i_h+2, i_w+1] + log_spectrum[i_h+2, i_w+2] + log_spectrum[i_h+2, i_w+3]
+				s += log_spectrum[i_h+3, i_w-3] + log_spectrum[i_h+3, i_w-2] + log_spectrum[i_h+3, i_w-1] + log_spectrum[i_h+3, i_w] + log_spectrum[i_h+3, i_w+1] + log_spectrum[i_h+3, i_w+2] + log_spectrum[i_h+3, i_w+3]
+				p = s/49
 				features.append(p)
-				i_w += 5
-			i_h+=5
+				i_w += 7
+			i_h+=7
 
 
 		return features
