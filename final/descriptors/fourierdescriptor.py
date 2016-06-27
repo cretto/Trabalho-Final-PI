@@ -53,10 +53,6 @@ class FourierDescriptor:
 		if src is dst:
 		    dst[:,:] = ret
 
-		dst2 = cv2.normalize(dst).flatten()
-		print (dst2)
-		print (len(dst2))
-
 		return dst
 
 	def describe(self, image):
@@ -104,7 +100,7 @@ class FourierDescriptor:
 				i_w = 1
 				while i_w < w:
 					s = log_spectrum[i_h-1, i_w-1] + log_spectrum[i_h-1, i_w] + log_spectrum[i_h-1, i_w+1] + log_spectrum[i_h, i_w-1] + log_spectrum[i_h, i_w] + log_spectrum[i_h, i_w+1] + log_spectrum[i_h+1, i_w-1] + log_spectrum[i_h+1, i_w] + log_spectrum[i_h+1, i_w+1]
-					p = s/9
+					p = s / 9
 					features.append(p)
 					i_w += 3
 				i_h += 3
@@ -120,16 +116,16 @@ class FourierDescriptor:
 					s += log_spectrum[i_h, i_w-2] + log_spectrum[i_h, i_w-1] + log_spectrum[i_h, i_w+1] + log_spectrum[i_h, i_w] + log_spectrum[i_h, i_w+1] + log_spectrum[i_h, i_w+2]
 					s += log_spectrum[i_h+1, i_w-2] + log_spectrum[i_h+1, i_w-1] + log_spectrum[i_h+1, i_w+1] + log_spectrum[i_h+1, i_w] + log_spectrum[i_h+1, i_w+1] + log_spectrum[i_h+1, i_w+2]
 					s += log_spectrum[i_h+2, i_w-2] + log_spectrum[i_h+2, i_w-1] + log_spectrum[i_h+2, i_w+1] + log_spectrum[i_h+2, i_w] + log_spectrum[i_h+2, i_w+1] + log_spectrum[i_h+2, i_w+2]
-					p = s/25
+					p = s / 25
 					features.append(p)
 					i_w += 5
 				i_h += 5
 		#Calcula media com uma mascara de 7x7
 		elif(self.maskSize == 7):
 			i_h = 3
-			while i_h < h-7:
+			while i_h < h - 7:
 				i_w = 3
-				while i_w < w-7:
+				while i_w < w - 7:
 					s = log_spectrum[i_h-3, i_w-3] + log_spectrum[i_h-3, i_w-2] + log_spectrum[i_h-3, i_w-1] + log_spectrum[i_h-3, i_w] + log_spectrum[i_h-3, i_w+1] + log_spectrum[i_h-3, i_w+2] + log_spectrum[i_h-3, i_w+3]
 					s += log_spectrum[i_h-2, i_w-3] + log_spectrum[i_h-2, i_w-2] + log_spectrum[i_h-2, i_w-1] + log_spectrum[i_h-2, i_w] + log_spectrum[i_h-2, i_w+1] + log_spectrum[i_h-2, i_w+2] + log_spectrum[i_h-2, i_w+3]
 					s += log_spectrum[i_h-1, i_w-3] + log_spectrum[i_h-1, i_w-2] + log_spectrum[i_h-1, i_w-1] + log_spectrum[i_h-1, i_w] + log_spectrum[i_h-1, i_w+1] + log_spectrum[i_h-1, i_w+2] + log_spectrum[i_h-1, i_w+3]
@@ -137,7 +133,7 @@ class FourierDescriptor:
 					s += log_spectrum[i_h+1, i_w-3] + log_spectrum[i_h+1, i_w-2] + log_spectrum[i_h+1, i_w-1] + log_spectrum[i_h+1, i_w] + log_spectrum[i_h+1, i_w+1] + log_spectrum[i_h+1, i_w+2] + log_spectrum[i_h+1, i_w+3]
 					s += log_spectrum[i_h+2, i_w-3] + log_spectrum[i_h+2, i_w-2] + log_spectrum[i_h+2, i_w-1] + log_spectrum[i_h+2, i_w] + log_spectrum[i_h+2, i_w+1] + log_spectrum[i_h+2, i_w+2] + log_spectrum[i_h+2, i_w+3]
 					s += log_spectrum[i_h+3, i_w-3] + log_spectrum[i_h+3, i_w-2] + log_spectrum[i_h+3, i_w-1] + log_spectrum[i_h+3, i_w] + log_spectrum[i_h+3, i_w+1] + log_spectrum[i_h+3, i_w+2] + log_spectrum[i_h+3, i_w+3]
-					p = s/49
+					p = s / 49
 					features.append(p)
 					i_w += 7
 				i_h += 7
