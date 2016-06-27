@@ -8,5 +8,4 @@ c) Para gerar o indice utilizar o comando:
 2) Busca
 
 a) Para buscar as imagens mais similares 'a query utilizar o comando:
-"python corel10k.py --images <diretorio com as imagens> -q <caminho para a query> -n <numero de imagens similares> 
-                    -m <fourier, gch ou lch> [--mask <3, 5 ou 7>] -d <chi2, manhattan ou euclidean>"
+"python corel10k.py --images <diretorio com as imagens> -q <caminho para a query> -n <numero de imagens similares> -m <fourier, gch ou lch> [--mask <3, 5 ou 7>] -d <chi2, manhattan ou euclidean>"
